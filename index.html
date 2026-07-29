@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Love ❤️</title>
+
+<!-- Cute Font -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffb1d8,#ff5c97);
+    font-family:'Pacifico', cursive;
+}
+
+.container{
+    text-align:center;
+    z-index:10;
+}
+
+.heart{
+    font-size:140px;
+    cursor:pointer;
+    user-select:none;
+    animation:heartbeat 1.2s infinite;
+    filter:drop-shadow(0 0 20px white);
+}
+
+.message{
+    display:none;
+    margin-top:20px;
+    color:white;
+    font-size:60px;
+    text-shadow:0 0 20px #ff2f7d;
+}
+
+
+.floating{
+    position:absolute;
+    pointer-events:none;
+    animation:floatUp linear forwards;
+}
+
+
+.rose{
+    position:absolute;
+    top:-50px;
+    pointer-events:none;
+    animation:fallRose linear forwards;
+}
+
+
+.sparkle{
+    position:absolute;
+    pointer-events:none;
+    color:white;
+    animation:sparkle 2s linear forwards;
+}
+
+
+@keyframes heartbeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    25%{
+        transform:scale(1.15);
+    }
+
+    50%{
+        transform:scale(.95);
+    }
+
+    75%{
+        transform:scale(1.1);
+    }
+}
+
+
+@keyframes pop{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.5);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+
+@keyframes floatUp{
+
+    from{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
+    }
+
+}
+
+
+@keyframes fallRose{
+
+    from{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+
+}
+
+
+@keyframes sparkle{
+
+    from{
+        transform:scale(0);
+        opacity:1;
+    }
+
+    to{
+        transform:scale(2);
+        opacity:0;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+    <div class="heart" onclick="loveExplosion()">
+        ❤️
+    </div>
+
+    <div class="message" id="loveText">
+        I LOVE YOU! ❤️
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+const emojis=[
+"❤️",
+"💕",
+"💖",
+"💗",
+"💘",
+"💞",
+"💋",
+"😘",
+"😍",
+"🥰"
+];
+
+
+function loveExplosion(){
+
+
+    // Show message forever after first click
+    document.getElementById("loveText").style.display="block";
+
+
+    // Heart pop every click
+    const heart=document.querySelector(".heart");
+
+    heart.style.animation="none";
+    heart.offsetHeight;
+    heart.style.animation="pop .35s, heartbeat 1.2s infinite .35s";
+
+
+
+    // Hearts and kisses
+
+    for(let i=0;i<80;i++){
+
+        setTimeout(()=>{
+
+
+            let item=document.createElement("div");
+
+            item.className="floating";
+
+            item.innerHTML=
+            emojis[Math.floor(Math.random()*emojis.length)];
+
+
+            item.style.left=Math.random()*100+"vw";
+
+            item.style.bottom="-50px";
+
+            item.style.fontSize=
+            (20+Math.random()*40)+"px";
+
+
+            item.style.animationDuration=
+            (3+Math.random()*3)+"s";
+
+
+            document.body.appendChild(item);
+
+
+
+            setTimeout(()=>{
+                item.remove();
+            },6000);
+
+
+        },i*20);
+
+    }
+
+
+
+    // Roses falling
+
+    for(let i=0;i<25;i++){
+
+        setTimeout(()=>{
+
+
+            let rose=document.createElement("div");
+
+            rose.className="rose";
+
+            rose.innerHTML="🌹";
+
+
+            rose.style.left=Math.random()*100+"vw";
+
+
+            rose.style.fontSize=
+            (20+Math.random()*30)+"px";
+
+
+            rose.style.animationDuration=
+            (5+Math.random()*5)+"s";
+
+
+            document.body.appendChild(rose);
+
+
+
+            setTimeout(()=>{
+                rose.remove();
+            },10000);
+
+
+
+        },i*200);
+
+    }
+
+
+
+    // Sparkles
+
+    for(let i=0;i<30;i++){
+
+
+        let sparkle=document.createElement("div");
+
+        sparkle.className="sparkle";
+
+        sparkle.innerHTML="✨";
+
+
+        sparkle.style.left=Math.random()*100+"vw";
+
+        sparkle.style.top=Math.random()*100+"vh";
+
+
+        sparkle.style.fontSize=
+        (10+Math.random()*25)+"px";
+
+
+        document.body.appendChild(sparkle);
+
+
+
+        setTimeout(()=>{
+            sparkle.remove();
+        },2000);
+
+
+    }
+
+
+}
+
+
+</script>
+
+
+</body>
+</html>
